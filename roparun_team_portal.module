@@ -1,0 +1,43 @@
+<?php
+
+/**
+ * Implements hook_views_api().
+ */
+function roparun_team_portal_views_api() {
+  return array(
+    'api' => 3,
+    'path' => drupal_get_path('module', 'roparun_team_portal'),
+  );
+}
+
+function roparun_team_portal_civimrf_user_update_alter(&$edit, $contact) {
+	if (isset($contact['team_id'])) {
+		$edit['roparun_team_portal_team_id']['und'][0]['value'] = $contact['team_id'];
+	}
+}
+
+function roparun_team_portal_civimrf_user_new_alter(&$edit, $contact) {
+	if (isset($contact['team_id'])) {
+		$edit['roparun_team_portal_team_id']['und'][0]['value'] = $contact['team_id'];
+	}
+}
+
+/**
+ * Hide the uid field from the form.
+ */
+function roparun_team_portal_form_user_profile_form_alter(&$form, &$form_state, $form_id) {
+  $current_user = user_uid_optional_load();
+  if (!in_array('administrator', $current_user->roles)) {
+    $form['roparun_team_portal_team_id']['#access'] = false;
+  }
+}
+
+/**
+ * Hide the uid field from the user profile
+ */
+function roparun_team_portal_preprocess_user_profile(&$vars) {
+  $current_user = user_uid_optional_load();
+	if (!in_array('administrator', $current_user->roles)) {
+		unset($vars['user_profile']['roparun_team_portal_team_id']);
+	}
+}
