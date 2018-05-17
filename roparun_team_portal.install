@@ -17,6 +17,7 @@ function roparun_team_portal_enable() {
         'field_name' => 'roparun_team_portal_team_id', 
         'entity_type' => 'user', 
         'label' => 'Roparun Captain of Team', 
+        'description' => 'Contact ID of the team in CiviCRM',
         'bundle' => 'user', 
         // If you don't set the "required" property then the field wont be required by default.
         'required' => FALSE,

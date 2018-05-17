@@ -10,6 +10,18 @@ function roparun_team_portal_views_api() {
   );
 }
 
+/**
+ * Implements hook_permission().
+ */
+function roparun_team_portal_permission() {
+  return array(
+    'access team id profile field' => array(
+      'title' => t('Access to the Team ID profile field'),
+    )
+  );
+}
+
+
 function roparun_team_portal_civimrf_user_update_alter(&$edit, $contact) {
 	if (isset($contact['team_id'])) {
 		$edit['roparun_team_portal_team_id']['und'][0]['value'] = $contact['team_id'];
@@ -26,8 +38,7 @@ function roparun_team_portal_civimrf_user_new_alter(&$edit, $contact) {
  * Hide the uid field from the form.
  */
 function roparun_team_portal_form_user_profile_form_alter(&$form, &$form_state, $form_id) {
-  $current_user = user_uid_optional_load();
-  if (!in_array('administrator', $current_user->roles)) {
+  if (!user_access('access team id profile field')) {
     $form['roparun_team_portal_team_id']['#access'] = false;
   }
 }
@@ -36,8 +47,7 @@ function roparun_team_portal_form_user_profile_form_alter(&$form, &$form_state, 
  * Hide the uid field from the user profile
  */
 function roparun_team_portal_preprocess_user_profile(&$vars) {
-  $current_user = user_uid_optional_load();
-	if (!in_array('administrator', $current_user->roles)) {
+  if (!user_access('access team id profile field')) {
 		unset($vars['user_profile']['roparun_team_portal_team_id']);
 	}
 }
