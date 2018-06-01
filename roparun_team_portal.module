@@ -60,6 +60,7 @@ function roparun_team_portal_cmrf_views_entity_list_alter(&$entity_list, $profil
     'action' => 'get',
     'count' => 'getcount',
   );
+  $label = $profile['label'].': '.t('Portal Team Info');
   $entity_list['PortalTeamInfo'] = array(
     'label' => $label,
     'entity' => 'PortalTeamInfo',
