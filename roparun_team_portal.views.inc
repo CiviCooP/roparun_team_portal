@@ -33,6 +33,15 @@ function roparun_team_portal_views_data_alter(&$data) {
             'field' => 'team_id',
           ),
         );
+      case 'PortalTeamInfo':
+        $data[$table_name]['user_team_id'] = array(
+          'title' => t('Team logged in user'),
+          'help' => t('Team ID of the logged in user.'),
+          'filter' => array(
+            'handler' => 'views_handler_filter_team',
+            'field' => 'team_id',
+          ),
+        );
         break;
     }
   }  
