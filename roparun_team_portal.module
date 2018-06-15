@@ -51,20 +51,3 @@ function roparun_team_portal_preprocess_user_profile(&$vars) {
 		unset($vars['user_profile']['roparun_team_portal_team_id']);
 	}
 }
-
-function roparun_team_portal_cmrf_views_entity_list_alter(&$entity_list, $profile) {
-  $label = $profile['label'].': '.t('Portal Team Member');
-  $entity_list['PortalTeamMember'] = array(
-    'label' => $label,
-    'entity' => 'PortalTeamMember',
-    'action' => 'get',
-    'count' => 'getcount',
-  );
-  $label = $profile['label'].': '.t('Portal Team Info');
-  $entity_list['PortalTeamInfo'] = array(
-    'label' => $label,
-    'entity' => 'PortalTeamInfo',
-    'action' => 'get',
-    'count' => 'getcount',
-  );
-}
