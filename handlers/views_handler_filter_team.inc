@@ -26,9 +26,6 @@ class views_handler_filter_team extends views_handler_filter {
       	'#size' => 30,
       	'#default_value' => $this->value['value'],
     	);
-    	if (!empty($form_state['exposed']) && !isset($form_state['input'][$identifier])) {
-      	$form_state['input'][$identifier] = $this->value['value'];
-			}
 		}
   }
 
