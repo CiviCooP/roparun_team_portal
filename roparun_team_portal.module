@@ -11,6 +11,21 @@ function roparun_team_portal_views_api() {
 }
 
 /**
+ * Implements hook_views_default_views().
+ */
+function roparun_team_portal_views_default_views() {
+  $files = file_scan_directory(drupal_get_path('module', 'roparun_team_portal'). '/views', '/.inc/');
+  $views = array();
+  foreach ($files as $filepath => $file) {
+    require $filepath;
+    if (isset($view)) {
+      $views[$view->name] = $view;
+    }
+  }
+  return $views;
+}
+
+/**
  * Implements hook_permission().
  */
 function roparun_team_portal_permission() {
