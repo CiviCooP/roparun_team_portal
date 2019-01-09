@@ -108,6 +108,21 @@ $handler->display->display_options['filters']['uid_raw']['table'] = 'users';
 $handler->display->display_options['filters']['uid_raw']['field'] = 'uid_raw';
 $handler->display->display_options['filters']['uid_raw']['operator'] = '>=';
 $handler->display->display_options['filters']['uid_raw']['value']['value'] = '1';
+/* Filtercriterium: Gebruiker: Rollen */
+$handler->display->display_options['filters']['rid']['id'] = 'rid';
+$handler->display->display_options['filters']['rid']['table'] = 'users_roles';
+$handler->display->display_options['filters']['rid']['field'] = 'rid';
+$handler->display->display_options['filters']['rid']['exposed'] = TRUE;
+$handler->display->display_options['filters']['rid']['expose']['operator_id'] = 'rid_op';
+$handler->display->display_options['filters']['rid']['expose']['label'] = 'Rollen';
+$handler->display->display_options['filters']['rid']['expose']['operator'] = 'rid_op';
+$handler->display->display_options['filters']['rid']['expose']['identifier'] = 'rid';
+$handler->display->display_options['filters']['rid']['expose']['remember_roles'] = array(
+  2 => '2',
+  1 => 0,
+  3 => 0,
+  4 => 0,
+);
 
 /* Display: Page */
 $handler = $view->new_display('page', 'Page', 'page');
